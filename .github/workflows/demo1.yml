@@ -1,5 +1,6 @@
 name: Actions Artifacts
-on: 
+on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -12,9 +13,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.npm
-            node_modules
+          path: .npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
@@ -33,9 +32,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.npm
-            node_modules
+          path: .npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
